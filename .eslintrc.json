@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    // "react-app",
+    "plugin:react/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+},
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    // "eqeqeq": 2,//必须使用全等
+    // "no-const-assign": 2,//禁止修改const声明的变量
+    // "no-alert": 2,//禁止使用alert confirm prompt
+    // "no-unused-vars":0
+  }
+
+}

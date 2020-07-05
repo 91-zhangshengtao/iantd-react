@@ -1,0 +1,98 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  color: $body-color;
+  white-space: nowrap; // 不换行
+  text-align: center;
+  vertical-align: middle;
+  background-image: none;
+  border: $btn-border-width solid transparent;
+  /*
+    @mixin button-size($padding-y, $padding-x, $font-size, $border-raduis) {
+      padding: $padding-y $padding-x;
+      font-size: $font-size;
+      border-radius: $border-raduis;
+    }
+  */
+  @include button-size( $btn-padding-y,  $btn-padding-x,  $btn-font-size,  $border-radius);
+  /* 盒子阴影
+     语法结构：box-shadow: inset 水平偏移 垂直偏移 羽化值（可无） 阴影外延值（可无） 阴影颜色，后面可以重复
+                          inset 表示阴影类型为内阴影，设置为空时，则表示类型为外阴影。
+     demo:    box-shadow: inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
+  */
+  box-shadow: $btn-box-shadow;
+  cursor: pointer;
+  /*过渡
+      1.样式改变不一样非要用：：hover
+      2.transition也可以加到：：hover里，但效果不一样，回来就没有过渡了
+    使用
+      1.transition-property:用来指定具有过渡效果的属性
+            transition-property:all;
+            参数：all 表示所有样式（默认）
+      2.transition-duration:用来指定过渡的时间  必须设置
+
+      3.transition-delay:用来设置延迟时间
+      4.transition-timing-function:设置动画的类型
+                参数：linear(匀速)     ease（变速 快-慢-快）   steps(5) （五个步骤）
+      5. 合起规则：没有规则 随便写 
+                  但是
+                  第一个时间：过渡的时间
+                  第二个时间：延迟的时间
+                  transition: 2s  1s  steps(10);
+    demo:    transition: color .15s ease-in-out, background-color .15s ease-in-out, 
+                         border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+  */
+  transition: $btn-transition;
+  &.disabled,
+  &[disabled] {
+    // disable指的是属性
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+    > * {
+      pointer-events: none;
+    }
+  }
+}
+
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+}
+.btn-sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+}
+
+.btn-primary {
+  @include button-style($primary, $primary, $white)
+}
+.btn-danger {
+  @include button-style($danger, $danger, $white)
+}
+
+.btn-default {
+  @include button-style($white, $gray-400, $body-color, $white, $primary, $primary)
+}
+
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $btn-link-color;
+  text-decoration: $link-decoration;
+  box-shadow: none;
+  &:hover {
+    color: $btn-link-hover-color;
+    text-decoration: $link-hover-decoration; 
+  }
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+    box-shadow: none;
+  }
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+  }
+}
+
