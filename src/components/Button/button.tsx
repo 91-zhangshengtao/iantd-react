@@ -29,7 +29,7 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
  * ~~~
  */
 export const Button: FC<ButtonProps> = (props) => {
-  console.log('props-：', props)
+  // console.log('props-：', props)
   
   const {
     btnType,
