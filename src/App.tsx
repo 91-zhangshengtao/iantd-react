@@ -7,24 +7,14 @@ import { MenuProps } from './components/Menu/menu'
 // TransMenu.SubMenu
 
 function App () {
-  // const testProps: MenuProps = {
-  //   defaultIndex: '0',
-  //   mode: 'vertical',
-  //   onSelect: ()=>{alert('自定义onSelect事件')
-  //   },
-  //   className: 'test'
-  // }
-  const testProps= {
-    defaultIndex: '0',
+  const testProps: MenuProps= {
+    defaultIndex: '4',
     // mode: 'vertical',
-    onSelect: ()=>{alert('自定义onSelect事件')
+    onSelect: (index)=>{alert(`自定义onSelect事件${index}`)
     },
-    className: 'test'
-  }
-  const testVerProps: MenuProps = {
-    defaultIndex: '0',
-    mode: 'vertical',
+    className: 'test',
     defaultOpenSubMenus: ['4']
+
   }
   return (
     <div className="App">
@@ -44,10 +34,27 @@ function App () {
             <TransMenu.Item>
               drop1
             </TransMenu.Item>
+            <TransMenu.Item>
+              drop2
+            </TransMenu.Item>
+            <TransMenu.Item>
+              drop3
+            </TransMenu.Item>
           </TransMenu.SubMenu>
           <TransMenu.SubMenu title="opened">
             <TransMenu.Item>
               opened1
+            </TransMenu.Item>
+            <TransMenu.Item>
+              opened2
+            </TransMenu.Item>
+          </TransMenu.SubMenu>
+          <TransMenu.SubMenu title="abc">
+            <TransMenu.Item>
+              abc1
+            </TransMenu.Item>
+            <TransMenu.Item>
+              abc2
             </TransMenu.Item>
           </TransMenu.SubMenu>
         </TransMenu>
@@ -58,7 +65,7 @@ function App () {
           defaultIndex="0"
           defaultOpenSubMenus={[]}
           mode="horizontal"
-          onSelect={function(){alert(22)}}
+          onSelect={function(index){alert(index)}}
         >
           <TransMenu.Item>
             cool link

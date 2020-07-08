@@ -13,7 +13,12 @@ export interface SubMenuProps {
 const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className}) => {
   const context = useContext(MenuContext)
   const openedSubMenus = context.defaultOpenSubMenus as Array<string>
+
+
+  // 'vertical' 纵向
   const isOpend = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false
+  // console.log('SubMenu--title,index,context.defaultOpenSubMenus,context.mode,isOpend：', `${title} |`, index, context.defaultOpenSubMenus, context.mode, isOpend, children)
+
   const [ menuOpen, setOpen ] = useState(isOpend)
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': context.index === index,
@@ -35,6 +40,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className}) =
   const clickEvents = context.mode === 'vertical' ? {
     onClick: handleClick
   } : {}
+  /* hover事件 */
   const hoverEvents = context.mode !== 'vertical' ? {
     onMouseEnter: (e: React.MouseEvent) => { handleMouse(e, true)},
     onMouseLeave: (e: React.MouseEvent) => { handleMouse(e, false)}
@@ -51,6 +57,19 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className}) =
       </SubMenu>
     </Menu>
   */
+ /*
+    <ul className="viking-menu menu-vertical/menu-horizontal">
+      <li className="menu-item is-disabled is-active">item11</li>
+
+      <li className="menu-item submenu-item is-active is-opened is-vertical">
+        <div className="submenu-title">title</div> 
+        <ul className="viking-submenu menu-opened">
+          <li>item21</li>
+          <li className="menu-item is-disabled is-active">item22</li>
+        </ul>
+      </li>
+    </ul>
+ */
   const renderChildren = () => {
     const subMenuClasses = classNames('viking-submenu', {
       'menu-opened': menuOpen
@@ -59,7 +78,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className}) =
       const childElement = child as FunctionComponentElement<MenuItemProps>
       if (childElement.type.displayName === 'MenuItem') {
         return React.cloneElement(childElement, {
-          index: `${index}-${i}`
+          index: `${index}-${i}` // '1-1'
         })
       } else {
         console.error("Warning: SubMenu has a child which is not a MenuItem component")
