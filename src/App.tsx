@@ -1,10 +1,16 @@
 import React from 'react'
 import './styles/index.scss'
-// import Button from './components/Button'
 import TransMenu from './components/Menu'
-import { MenuProps } from './components/Menu/menu'
-// TransMenu.Item
-// TransMenu.SubMenu
+import Icon from './components/Icon'
+import { MenuProps } from './components/Menu/menu' // TransMenu.Item  TransMenu.SubMenu
+/* fontawesome --Explicit Import */
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+/* fontawesome --Build a Library */
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons' // fas 所有类型集合
+import { fab, faAirbnb } from '@fortawesome/free-brands-svg-icons' // fab 所有类型集合
+// library.add(aCheckSquare, faCoffee)
+library.add(fas, fab)
 
 function App () {
   const testProps: MenuProps= {
@@ -18,6 +24,19 @@ function App () {
   }
   return (
     <div className="App">
+      {/* icon --theme是是自己封装的控制颜色  */}
+      <div>
+        {/* 用Explicit Import */}
+        <Icon icon={faCoffee} size="5x" theme="success"></Icon>
+        <Icon icon={faCoffee} size="lg" theme="info"></Icon>
+        <Icon icon={faAirbnb} size="10x" theme="info"></Icon>
+
+        {/* 用libary */}
+        <Icon icon="coffee" size="10x" theme="danger"></Icon>
+        <Icon icon={['fas','coffee']} size="6x" theme="secondary"></Icon>
+        <Icon icon={['fab','airbnb']} size="6x" theme="warning"></Icon>
+
+      </div>
       {/* Menu */}
       <div>
         <TransMenu {...testProps} mode='vertical'>

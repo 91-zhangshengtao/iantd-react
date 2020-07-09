@@ -93,7 +93,8 @@
     border-bottom: $menu-item-active-border-width solid transparent;
   }
   .viking-submenu {
-    position: absolute;
+    // submenu-item(li) > viking-submenu(ul) > menu-item(li)
+    position: absolute; // 横向, 这里absolute直接定位 父元素submenu-item(li) 
     background: $white;
     z-index: 100;
     top: calc(100% + 8px);
