@@ -24,7 +24,8 @@
   >.menu-item {
     padding: $menu-item-padding-y $menu-item-padding-x;
     cursor: pointer;
-    transition: $menu-transition; //ease-in-put
+    transition: $menu-transition; //ease-in-put 
+    // color .15s ease-in-out, border-color .15s ease-in-out !default;
     &:hover, &:focus {
       text-decoration: none;
     }
@@ -46,7 +47,7 @@
       align-items: center;
     }
     .arrow-icon {
-      transition: transform .25s ease-in-out;
+      transition: transform .25s ease-in-out; // 动画
       margin-left: 3px;
     }
     &:hover {
@@ -68,7 +69,7 @@
   }
   // submenu-item(li) > viking-submenu(ul) > menu-item(li)
   .viking-submenu {
-    display: none;
+    // display: none;
     list-style:none;
     padding-left: 0;
     white-space: nowrap;
@@ -84,7 +85,7 @@
     }
   }
   .viking-submenu.menu-opened {
-    display: block;
+    // display: block;
   }
 }
 /* 横向 */

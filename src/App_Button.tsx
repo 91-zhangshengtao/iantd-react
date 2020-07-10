@@ -1,9 +1,7 @@
 import React from 'react'
 import './styles/index.scss'
 import Button from './components/Button'
-const a = '123'
-if(a == '123'){
-}
+
 function App () {
   return (
     <div className="App">

@@ -2,8 +2,8 @@ import React,{ useContext, useState, FunctionComponentElement } from 'react'
 import classNames from 'classnames'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
-// import Icon from '../Icon/icon'
-// import Transition from '../Transition/transition'
+import Icon from '../Icon/icon'
+import Transition from '../Transition/transition'
 export interface SubMenuProps {
   index?: string;
   title: string;
@@ -17,11 +17,16 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className}) =
 
   // 'vertical' 纵向
   const isOpend = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false
-  // console.log('SubMenu--title,index,context.defaultOpenSubMenus,context.mode,isOpend：', `${title} |`, index, context.defaultOpenSubMenus, context.mode, isOpend, children)
-
+  // 拿Context中index
+  let tem_Index1 = index as String
+  let tem_Index2 = context.index as String
+  // 1-1 3-1 ==> 1 3
+  let subIndex1 = tem_Index1.split('-')[0]
+  let subIndex2 = tem_Index2.split('-')[0]
+  console.log('subIndex1, subIndex2：', subIndex1, subIndex2)
   const [ menuOpen, setOpen ] = useState(isOpend)
   const classes = classNames('menu-item submenu-item', className, {
-    'is-active': context.index === index,
+    'is-active': subIndex1 === subIndex2,
     'is-opened': menuOpen,
     'is-vertical': context.mode === 'vertical'
   })
@@ -85,25 +90,23 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className}) =
       }
     })
     return (
+      <Transition
+        in={menuOpen}
+        timeout={300}
+        animation="zoom-in-top"
+        wrapper={false}
+      >
         <ul className={subMenuClasses}>
           {childrenComponent}
         </ul>
-      // <Transition
-      //   in={menuOpen}
-      //   timeout={300}
-      //   animation="zoom-in-top"
-      // >
-      //   <ul className={subMenuClasses}>
-      //     {childrenComponent}
-      //   </ul>
-      // </Transition>
+      </Transition>
     )
   }
   return (
     <li key={index} className={classes} {...hoverEvents}>
       <div className="submenu-title" {...clickEvents}>
         {title}
-        {/* <Icon icon="angle-down" className="arrow-icon"/> */}
+        <Icon icon="angle-down" className="arrow-icon"/>
       </div>
       {renderChildren()}
     </li>

@@ -12,10 +12,9 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
   const { index, disabled, className, style, children } = props
   /* Context */
   const context = useContext(MenuContext)
-  // 拿Context中index
   const classes = classNames('menu-item', className, {
     'is-disabled': disabled,
-    'is-active': context.index === index
+    'is-active': context.index === index // 1-1 3-1
   })
   // 父组件click事件
   const handleClick = () => {

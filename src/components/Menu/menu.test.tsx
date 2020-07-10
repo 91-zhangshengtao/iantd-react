@@ -3,18 +3,18 @@ import { render, RenderResult, fireEvent, cleanup, wait } from '@testing-library
 import Menu, {MenuProps} from './menu'
 import MenuItem from './menuItem'
 import SubMenu from './subMenu'
-// jest.mock('../Icon/icon', () => {
-//   return () => {
-//     return <i className="fa" />
-//   }
-// })
-// jest.mock('react-transition-group', () => {
-//   return {
-//     CSSTransition: (props: any) => {
-//       return props.children
-//     }
-//   }
-// })
+jest.mock('../Icon/icon', () => {
+  return () => {
+    return <i className="fa" />
+  }
+})
+jest.mock('react-transition-group', () => {
+  return {
+    CSSTransition: (props: any) => {
+      return props.children
+    }
+  }
+})
 const testProps: MenuProps = {
   defaultIndex: '0',
   onSelect: jest.fn(),
@@ -95,7 +95,7 @@ describe('test Menu and MenuItem component in default(horizontal) mode', () => {
   })
   it('should show dropdown items when hover on subMenu', async () => {
     // queryByText() 可能会不存在  getByText() 一定存在的
-    expect(wrapper.queryByText('drop1')).not.toBeVisible()
+    expect(wrapper.queryByText('drop1') as null ).not.toBeVisible()
     const dropdownElement = wrapper.getByText('dropdown')
     fireEvent.mouseEnter(dropdownElement)
     // async await wait(()=>{})

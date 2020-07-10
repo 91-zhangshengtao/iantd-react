@@ -16,7 +16,7 @@ function App () {
   const testProps: MenuProps= {
     defaultIndex: '4',
     // mode: 'vertical',
-    onSelect: (index)=>{alert(`自定义onSelect事件${index}`)
+    onSelect: (index)=>{console.log(`自定义onSelect事件${index}`)
     },
     className: 'test',
     defaultOpenSubMenus: ['4']
@@ -84,7 +84,7 @@ function App () {
           defaultIndex="0"
           defaultOpenSubMenus={[]}
           mode="horizontal"
-          onSelect={function(index){alert(index)}}
+          onSelect={function(index){console.log(index)}}
         >
           <TransMenu.Item>
             cool link
