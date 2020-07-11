@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    // ts支持
+    "rootDirs": ["src"],
     "target": "es5",
     "lib": [
       "dom",
