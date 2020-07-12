@@ -28,6 +28,6 @@ const buttonWithType = () => (
 storiesOf('Button Component', module)
   // .addDecorator(withInfo)
   // .addParameters({info: {text:'Button Component', inline: true, header: false}})
-  .add('Button', defaultButton)
-  .add('不同尺寸的 Button', buttonWithSize, {info: { inline: false, header: false}})
+  .add('Button', defaultButton) // 'Button'要与组件名一直，不然注释无法生成文档
+  .add('不同尺寸的 Button', buttonWithSize, {info: { inline: false, header: false}}) // 第三个参数:丰富story的info信息(优先级比全局配置高)
   .add('不同类型的 Button', buttonWithType)

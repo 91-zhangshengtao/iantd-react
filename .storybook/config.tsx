@@ -3,23 +3,25 @@ import { withInfo } from '@storybook/addon-info'
 import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+// 使components组件内的样式生效
 import "../src/styles/index.scss"
 library.add(fas)
-// 添加样式
+
 const wrapperStyle: React.CSSProperties = {
   padding: '20px 40px'
 }
-
+// 装饰story(样式)
 const storyWrapper = (stroyFn: any) => (
   <div style={wrapperStyle}>
     <h3>组件演示</h3>
     {stroyFn()}
   </div>
 )
-// 作用：丰富story的info信息
+
+// 装饰story
 addDecorator(storyWrapper)
-addDecorator(withInfo)
-addParameters({info: { inline: true, header: false}})
+addDecorator(withInfo) // withInfo作用：丰富story的info信息
+addParameters({info: { inline: true, header: false}}) // {info: }: 丰富story的info信息
 const loaderFn = () => {
   const allExports = [require('../src/welcome.stories.tsx')];
   const req = require.context('../src/components', true, /\.stories\.tsx$/);
