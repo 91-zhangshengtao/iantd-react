@@ -1,24 +1,54 @@
 import React from 'react'
 import './styles/index.scss'
-import Button from './components/Button'
+import Input from './components/Input'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas, faFileExcel } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 
 function App () {
   return (
-    <div className="App">
-      {/* Button */}
-      <div>
-        <Button className="testclass">className</Button>
-        <Button autoFocus>autoFocus</Button>
-        <Button size="lg"> large button </Button>
-        <Button size="sm"> small button </Button>
-        <Button size="sm" disabled>disabled small button </Button>
+    <div className="App" style={{paddingLeft:"0px",paddingTop:"10px"}}>
+      {/* Input */}
+      <div style={{ display: "flex", justifyContent:"space-around"}}>
+        <Input
+          style={{width: '300px'}}
+          placeholder="placeholder"
+          onChange={e => alert(`${e.target.value}  changed`)}
+        />
+        <Input
+          style={{width: '300px'}}
+          placeholder="disabled input"
+          disabled 
+        />
       </div>
-      <div>
-        <Button btnType="primary"> primary button </Button>
-        <Button btnType="danger"> danger button </Button>
-        <Button btnType="link" href="https://google.com" target="_blank"> link button </Button>
-        <Button btnType="link" href="https://google.com" target="_blank" disabled>disabled link button </Button>
-        <Button onClick={ () => { alert('button click') } }> click button </Button>
+      <div style={{ display: "flex", justifyContent:"space-around"}}>
+        <Input
+          style={{width: '300px'}}
+          defaultValue="prepend text"
+          prepend="https://"
+        />
+        <Input
+          style={{width: '300px'}}
+          defaultValue="google"
+          append=".com"
+        />
+      </div>
+      <div style={{ display: "flex", justifyContent:"space-around"}}>
+        <Input
+          style={{width: '300px'}}
+          placeholder="input with icon"
+          icon="search"
+        />  
+        <Input
+          style={{width: '300px'}}
+          defaultValue="large size"
+          size="lg"
+        />
+        <Input
+          style={{width: '300px'}}
+          placeholder="small size"
+          size="sm"
+        />
       </div>
       
     </div>
