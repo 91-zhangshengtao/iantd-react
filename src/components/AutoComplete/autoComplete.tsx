@@ -35,19 +35,25 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
   // useState
   const [ inputValue, setInputValue ] = useState(value as string)
-  const [ suggestions, setSugestions ] = useState<DataSourceType[]>([])
+  const [ suggestions, setSugestions ] = useState<DataSourceType[]>([]) // 过滤下拉列表
   const [ loading, setLoading ] = useState(false)
   const [ showDropdown, setShowDropdown] = useState(false)
   const [ highlightIndex, setHighlightIndex] = useState(-1)
-  const triggerSearch = useRef(false)
+
+  // useRef
+  const triggerSearch = useRef(false) // 
   const componentRef = useRef<HTMLDivElement>(null)
+
+  // 自定义useState
   const debouncedValue = useDebounce(inputValue, 300) // 防抖 return 防抖后的inputValue
-  useClickOutside(componentRef, () => { setSugestions([])})
+
+  // 调用hook中的方法
+  useClickOutside(componentRef, () => { setSugestions([])}) // 初始化过滤下拉选项列表
 
   // useEffect --防抖处理
   useEffect(() => {
     if (debouncedValue && triggerSearch.current) {
-      setSugestions([])
+      setSugestions([]) // 初始化 过滤下拉列表
       const results = fetchSuggestions(debouncedValue)
       /* 是否是Promise对象  results instanceof Promise */
       if (results instanceof Promise) {
@@ -69,7 +75,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     } else {
       setShowDropdown(false)
     }
-    setHighlightIndex(-1)
+    setHighlightIndex(-1) // 初始化高亮
   }, [debouncedValue, fetchSuggestions])
   // 高亮效果
   const highlight = (index: number) => {
@@ -81,20 +87,24 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   }
   // onKeyDown 键盘事件
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    console.log('e.keyCode:',e.keyCode);
+    // console.log('e.keyCode:',e.keyCode);
     
     switch(e.keyCode) {
+      // 回车键盘
       case 13:
         if (suggestions[highlightIndex]) {
           handleSelect(suggestions[highlightIndex])
         }
         break
+      // 上键
       case 38:
         highlight(highlightIndex - 1)
         break
+      // 下键
       case 40:
         highlight(highlightIndex + 1)
         break
+      // esc
       case 27:
         setShowDropdown(false)
         break
@@ -122,6 +132,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     return renderOption ? renderOption(item) : item.value
   }
   const generateDropdown = () => {
+    console.log('suggestions：',suggestions)
+    
     return (
       <Transition
         in={showDropdown || loading}
@@ -159,7 +171,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         onKeyDown={handleKeyDown}
         {...restProps}
       />
-      {generateDropdown()}
+      {(suggestions && suggestions.length) ? generateDropdown() : ''}
     </div>
   )
 }

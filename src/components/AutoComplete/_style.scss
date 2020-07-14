@@ -1,6 +1,36 @@
+/*
+  <div className="viking-auto-complete" ref={componentRef}>
+      <Input
+        value={inputValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        {...restProps}
+      />
+       <ul className="viking-suggestion-list">
+          <div className="suggstions-loading-icon">
+              <Icon icon="spinner" spin/>
+          </div>
+          
+          {suggestions.map((item, index) => {
+            return (
+              <li key={index} className="suggestion-item is-active" onClick={() => handleSelect(item)}>
+                {renderTemplate(item)}
+              </li>
+            )
+          })}
+        </ul>
+  </div>
+*/
+
+/** wrapper */
 .viking-auto-complete {
   position: relative;
+  // input
+  .viking-input-wrapper{
+    margin-bottom:0px;
+  }
 }
+/** .viking-suggestion-list(ul) */
 .viking-suggestion-list {
   list-style:none;
   padding-left: 0;
@@ -13,12 +43,14 @@
   border: $menu-border-width solid $menu-border-color;
   box-shadow: $submenu-box-shadow;
   width: 100%;
+  // icon
   .suggstions-loading-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 75px;
   }
+  // li
   .suggestion-item {
     padding: $menu-item-padding-y $menu-item-padding-x;
     cursor: pointer;

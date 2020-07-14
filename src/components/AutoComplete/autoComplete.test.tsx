@@ -3,7 +3,7 @@ import { config } from 'react-transition-group'
 import { render, RenderResult, fireEvent, wait } from '@testing-library/react'
 import { AutoComplete, AutoCompleteProps } from './autoComplete'
 
-config.disabled = true
+config.disabled = true // transition变同步，相当于没有动画效果
 
 const testArray = [
   {value: 'ab', number: 11},
@@ -25,15 +25,15 @@ describe('test AutoComplete component', () => {
   })
   it('test basic AutoComplete behavior', async () => {
     // input change
-    fireEvent.change(inputNode, {target: { value: 'a'}})
+    fireEvent.change(inputNode, {target: { value: 'a'}}) // 触发用户事件
     await wait(() => {
       expect(wrapper.queryByText('ab')).toBeInTheDocument()
     })
     // should have two suggestion items
-    expect(wrapper.container.querySelectorAll('.suggestion-item').length).toEqual(2)
+    expect(wrapper.container.querySelectorAll('.suggestion-item').length).toEqual(2) // wrapper.container拿到DOM节点
     //click the first item
     fireEvent.click(wrapper.getByText('ab'))
-    expect(testProps.onSelect).toHaveBeenCalledWith({value: 'ab', number: 11})
+    expect(testProps.onSelect).toHaveBeenCalledWith({value: 'ab', number: 11}) // 被调用
     expect(wrapper.queryByText('ab')).not.toBeInTheDocument()
     //fill the input
     expect(inputNode.value).toBe('ab')
