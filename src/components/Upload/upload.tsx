@@ -1,22 +1,30 @@
 import React, { FC, useRef, ChangeEvent, useState } from 'react'
 import axios from 'axios'
-import UploadList from './uploadList'
+import UploadList from './uploadList' // 进程Progress list 组件
 import Dragger from './dragger'
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
+// file 接口( 原来就File类型, 需要自定义拓展类型)
 export interface UploadFile {
   uid: string;
+  /** 大小 */
   size: number;
   name: string;
+  /** file上传状态 */
   status?: UploadFileStatus;
+  /** 百分比 */
   percent?: number;
+  /** 原file */
   raw?: File;
   response?: any;
   error?: any;
 }
+// Upload组件 接口
 export interface UploadProps {
   /** 接口发送到哪个接口 */
   action: string;
+  /** 默认 file自定义拓展的类型 */
   defaultFileList?: UploadFile[];
+  /** 上传前 */
   beforeUpload? : (file: File) => boolean | Promise<File>;
   /** 上传进程 */
   onProgress?: (percentage: number, file: File) => void;
@@ -24,13 +32,21 @@ export interface UploadProps {
   onSuccess?: (data: any, file: File) => void;
   /** 上传失败 */
   onError?: (err: any, file: File) => void;
+  /** file change 事件 */
   onChange?: (file: File) => void;
+  /** file remove 事件 */
   onRemove?: (file: UploadFile) => void;
+  /** 添加自定义header */
   headers?: {[key: string]: any };
+  /** 添加自定义name --代表发到后台的文件参数名称 */
   name?: string;
+  /** 添加自定义post formData */
   data?: {[key: string]: any };
+  /** 是否携带cookie */
   withCredentials?: boolean;
+  /** 限制文件类型 */
   accept?: string;
+  /** 是否支持上传多个文件 */
   multiple?: boolean;
   drag?: boolean;
 }
@@ -57,7 +73,14 @@ export const Upload: FC<UploadProps> = (props) => {
 
   /* useRef */
   const fileInput = useRef<HTMLInputElement>(null)
-  const [ fileList, setFileList ] = useState<UploadFile[]>(defaultFileList || [])
+
+  /* useState */
+  const [ fileList, setFileList ] = useState<UploadFile[]>(defaultFileList || []) // 自定义拓展的file类型(为了进度条取值)
+
+  /* 更新file信息 事件
+     - Partial<UploadFile> --可选
+     - useState里 可以传function ()=>{return []}  --返回新对象
+  */
   const updateFileList = (updateFile: UploadFile, updateObj: Partial<UploadFile>) => {
     setFileList(prevList => {
       return prevList.map(file => {
@@ -86,22 +109,26 @@ export const Upload: FC<UploadProps> = (props) => {
       fileInput.current.value = '' // 初始化清空
     }
   }
+  // file-remove 事件
   const handleRemove = (file: UploadFile) => {
     setFileList((prevList) => {
       return prevList.filter(item => item.uid !== file.uid)
     })
+    // 再调用 用户定义的remove事件
     if (onRemove) {
       onRemove(file)
     }
   }
-  // file-upload 事件
+  // file-upload 事件(文件上传会post请求多次)
   const uploadFiles = (files: FileList) => {
     let postFiles = Array.from(files) // 转Array类型
     postFiles.forEach(file => {
+      // 判断beforeUpload事件(外面传进来的 props接收的)
       if (!beforeUpload) {
         post(file)
       } else {
         const result = beforeUpload(file)
+        // 判断result是个Promise
         if (result && result instanceof Promise) {
           result.then(processedFile => {
             post(processedFile)
@@ -112,7 +139,9 @@ export const Upload: FC<UploadProps> = (props) => {
       }
     })
   }
+  /* post上传文件 */
   const post = (file: File) => {
+    // 自定义拓展的file类型
     let _file: UploadFile = {
       uid: Date.now() + 'upload-file',
       status: 'ready',
@@ -121,12 +150,18 @@ export const Upload: FC<UploadProps> = (props) => {
       percent: 0,
       raw: file
     }
-    //setFileList([_file, ...fileList])
+    
+    /* 合并fileList(合并先前的)
+       - fileList setFileList --useState
+       - useState里 可以传function解决异步问题  ()=>{return []}
+    */
+    // 解决异步问题
     setFileList(prevList => {
       return [_file, ...prevList]
-    })
+    }) 
     const formData = new FormData()
-    formData.append(name || 'file', file)
+    // ------name， data是外部传入的 props接收-------------
+    formData.append(name || 'file', file)  // name--代表发到后台的文件参数名称
     if (data) {
       Object.keys(data).forEach(key => {
         formData.append(key, data[key])
@@ -136,10 +171,10 @@ export const Upload: FC<UploadProps> = (props) => {
     // api
     axios.post(action, formData, {
       headers: {
-        ...headers,
+        ...headers, // 外部headers
         'Content-Type': 'multipart/form-data'
       },
-      withCredentials,
+      withCredentials: withCredentials, // 是否携带cookie
       // 上传进度(axios里自带的,下面照写就行)
       onUploadProgress: (e) => {
         let percentage = Math.round((e.loaded * 100) / e.total) || 0;

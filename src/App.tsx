@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import './styles/index.scss'
 import axios from 'axios'
+
+import Progress from './components/Progress'
 import  Upload  from './components/Upload'
 import  Icon  from './components/Icon'
 /* fontawesome --Build a Library */
@@ -50,13 +52,40 @@ const App: React.FC = () => {
     }
     
   }
-   
+  /* beforeUpload 事件 */
+  // boolean
+  const checkFileSize = (file: File) => {
+    if (Math.round(file.size / 1024) > 50) {
+      alert('file too big')
+      return false
+    }
+    return true
+  }
+  // Promise<File>
+  // 重命名
+  const filePromise = (file: File) => {
+    const newFile = new File([file], 'new_name.docx', {type: file.type})
+    return Promise.resolve(newFile)
+  }
+
   return (
     <div className="App" style={{paddingLeft:"0px",paddingTop:"10px"}}>
       <div>
         <h1>title: {title}</h1>
       </div>
-      <div>
+      <div style={{border:"1px solid #ccc"}}>
+        <h1>Process组件</h1>
+        <div>
+          <Progress 
+            percent={30 || 0}
+            strokeHeight={15} // bar高度
+            showText={true}
+            // styles?: React.CSSProperties;
+            theme="info"
+          />
+        </div>
+      </div>
+      <div style={{border:"1px solid #ccc"}}>
           {/* 1. form表单文件上传  */}
           <h1>form表单文件上传</h1>
           <form encType="multipart/form-data" action="https://jsonplaceholder.typicode.com/posts" method="post">
@@ -68,17 +97,53 @@ const App: React.FC = () => {
           <h1>借助js文件上传</h1>
           <input type="file" name="file" onChange={handleFileChange} />
       </div>
-      <div>
+      <div style={{border:"1px solid #ccc"}}>
           <h1>Upload 组件</h1>
+          {/*
+            const props = {
+              // 接口发送到哪个接口 
+              action: string;
+              // 默认 file自定义拓展的类型
+              defaultFileList?: UploadFile[];
+              // 上传前 
+              beforeUpload? : (file: File) => boolean | Promise<>;
+              // 上传进程 
+              onProgress?: (percentage: number, file: File) => void;
+              // 上传成功
+              onSuccess?: (data: any, file: File) => void;
+              // 上传失败 
+              onError?: (err: any, file: File) => void;
+              // file change 事件
+              onChange?: (file: File) => void;
+              // file remove 事件
+              onRemove?: (file: UploadFile) => void;
+              // 添加自定义header  --如{'Content-Type': 'multipart/form-data'}
+              headers?: {[key: string]: any };
+              // 添加自定义name --代表发到后台的文件参数名称
+              name?: string;
+              // 添加自定义post formData
+              data?: {[key: string]: any };
+              // 是否携带cookie
+              withCredentials?: boolean;
+              // 限制文件类型
+              accept?: string;
+              // 是否支持上传多个文件
+              multiple?: boolean;
+              drag?: boolean;
+            }
+          */}
           <Upload
+            // headers={{'Content-Type': 'multipart/form-data'}}
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             onChange={file=>console.log('onChange:',file)}
             onSuccess={(data,file)=>console.log('onSuccess:', data, file)}
             onError={(error,file)=>console.log('onError:', error, file)}
             onRemove={file=>console.log('onRemove:',file)}
-            name="fileName1"
+            // beforeUpload={checkFileSize} // checkFileSize / filePromise
+            name="fileName112233"
             multiple
-            drag
+            // accept="image/*"
+            // drag
           >
             <Icon icon="upload" size="5x" theme="secondary" />
             <br/>
