@@ -1,9 +1,62 @@
+/*
+    <div className="viking-upload-component">
+    ===================================1-1 upload-input wrapper ========================================
+      <div className="viking-upload-input"  style={{display: 'inline-block'}}>
+
+        ---------------------------------拖拽wrapper----------------------------
+        <div className="viking-uploader-dragger is-dragover">children</div>
+          
+        -----------------------------input type="file" -----------------
+        <input className="viking-file-input" style={{display: 'none'}} type="file" />
+      </div>
+
+    =====================================1-2 uploadlist wrapper==================================================
+      <ul className="viking-upload-list">
+          // 单个filelist (li)
+          <li className="viking-upload-list-item">
+
+            ````````````````````````` fileName + iconFont````````````````
+            <span className="file-name file-name-success"">
+              <Icon icon="file-alt" theme="secondary" />
+              {item.name} 
+            </span>
+
+            ````````````````````````` icon status 不hover的样式`````````````````````````
+            <span className="file-status">
+              <Icon icon="spinner" spin theme="primary" />
+              <Icon icon="check-circle" theme="success" />
+              <Icon icon="times-circle" theme="danger" />
+            </span>
+
+            ``````````````````` icon actions --伪类 hover的样式 ``````
+            <span className="file-actions">
+              <Icon icon="times"/>
+            </span>
+
+            -----------------------------------Progress组件------------------
+            // bar-wrapper process 
+            <div className="viking-progress-bar" style={styles}>
+              // 灰色bar-outer
+              <div className="viking-progress-bar-outer" style={{ height: `${strokeHeight}px`}}>
+                // theme bar-inner
+                <div className=`viking-progress-bar-inner color-success` style="width:30%">
+                  <span className="inner-text">30%</span>
+                </div>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </div>
+*/
+
+/* uploadlist wrapper */
 .viking-upload-list {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
 
+/* 拖拽 wrapper */
 .viking-uploader-dragger {
   background: $gray-100;
   border: 1px dashed $gray-300;
@@ -22,7 +75,7 @@
   }
 }
 
-
+/* 单个filelist (li) */
 .viking-upload-list-item {
   transition: all .5s cubic-bezier(.55,0,.1,1);
   font-size: 14px;
@@ -35,6 +88,7 @@
   &:first-child {
     margin-top: 10px;
   }
+  // filename 
   .file-name {
     margin-left: 5px;
     margin-right: 40px;
@@ -49,6 +103,7 @@
       color: $danger;
     }
   }
+  // file status 不hover的样式
   .file-status {
     display: block;
     position: absolute;
@@ -56,6 +111,7 @@
     top: 0;
     line-height: inherit;
   }
+  // file-actions hover的样式
   .file-actions {
     display: none;
     position: absolute;

@@ -69,7 +69,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="App" style={{paddingLeft:"0px",paddingTop:"10px"}}>
+    <div className="App" style={{padding:"10px 10px",width:"800px"}}>
       <div>
         <h1>title: {title}</h1>
       </div>
@@ -98,7 +98,7 @@ const App: React.FC = () => {
           <input type="file" name="file" onChange={handleFileChange} />
       </div>
       <div style={{border:"1px solid #ccc"}}>
-          <h1>Upload 组件</h1>
+          <h1>非拖拽 Upload 组件 </h1>
           {/*
             const props = {
               // 接口发送到哪个接口 
@@ -129,6 +129,7 @@ const App: React.FC = () => {
               accept?: string;
               // 是否支持上传多个文件
               multiple?: boolean;
+              // 是否支持拖拽
               drag?: boolean;
             }
           */}
@@ -144,6 +145,25 @@ const App: React.FC = () => {
             multiple
             // accept="image/*"
             // drag
+          >
+            上传
+        </Upload>
+      </div>
+
+      <div style={{border:"1px solid #ccc"}}>
+        <h1>拖拽情况 Upload组件</h1>
+        <Upload
+            // headers={{'Content-Type': 'multipart/form-data'}}
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            onChange={file=>console.log('onChange:',file)}
+            onSuccess={(data,file)=>console.log('onSuccess:', data, file)}
+            onError={(error,file)=>console.log('onError:', error, file)}
+            onRemove={file=>console.log('onRemove:',file)}
+            // beforeUpload={checkFileSize} // checkFileSize / filePromise
+            name="fileName112233"
+            multiple
+            // accept="image/*"
+            drag
           >
             <Icon icon="upload" size="5x" theme="secondary" />
             <br/>

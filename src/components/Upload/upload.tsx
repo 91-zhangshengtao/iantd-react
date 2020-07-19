@@ -48,6 +48,7 @@ export interface UploadProps {
   accept?: string;
   /** 是否支持上传多个文件 */
   multiple?: boolean;
+  /** 是否拖拽文件 */
   drag?: boolean;
 }
 
@@ -178,6 +179,8 @@ export const Upload: FC<UploadProps> = (props) => {
       // 上传进度(axios里自带的,下面照写就行)
       onUploadProgress: (e) => {
         let percentage = Math.round((e.loaded * 100) / e.total) || 0;
+        console.log('onUploadProgress：',percentage)
+        
         if (percentage < 100) {
           updateFileList(_file, { percent: percentage, status: 'uploading'})
           if (onProgress) {
@@ -212,6 +215,7 @@ export const Upload: FC<UploadProps> = (props) => {
         style={{display: 'inline-block'}}
         onClick={handleClick} // click
       >
+          {/* 拖拽 --onFile：drop upload file 事件 */}
           {drag ? 
             <Dragger onFile={(files) => {uploadFiles(files)}}>
               {children}
