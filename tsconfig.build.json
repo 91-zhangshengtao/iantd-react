@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "dist", // 编译文件到
+    "module": "esnext", // type --es6 modules
+    "target": "es5", // es5浏览器支持面更广 babel
+    "declaration": true, // 为每一个js文件 生成一个.d.ts文件
+    "jsx": "react", // 编译时用create element来代替
+    "moduleResolution":"Node", // 搜选module的方式
+    "allowSyntheticDefaultImports": true, // 支持default import 方式
+  },
+  // 需要编译的文件
+  "include": [
+    "src"
+  ],
+  // 不希望编译的
+  "exclude": [
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx",
+    "src/setupTests.ts",
+  ]
+}
