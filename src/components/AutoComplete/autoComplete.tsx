@@ -5,6 +5,7 @@ import Icon from '../Icon/icon'
 import Transition from '../Transition/transition'
 import useDebounce from '../../hooks/useDebounce'
 import useClickOutside from '../../hooks/useClickOutside'
+import PropTypes from 'prop-types';
 interface DataSourceObject {
   value: string;
 }

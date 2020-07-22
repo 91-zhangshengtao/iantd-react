@@ -18,5 +18,4 @@ const Icon: React.FC<IconProps> = (props) => {
     <FontAwesomeIcon className={classes} {...restProps} />
   )
 }
-
 export default Icon

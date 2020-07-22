@@ -13,11 +13,24 @@
     "SharedArrayBuffer": "readonly"
 },
   "parser": "@typescript-eslint/parser",
+  /*
+    报如下错误 需要添加
+    Parsing error: ImportDeclaration should appear when the mode is ES6 and in the module context.
+  */
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
   "plugins": [
     "react",
     "@typescript-eslint"
   ],
   "rules": {
+    "react/prop-types": 0, // 去掉react/prop-types
+    "react/display-name": 0 // react/display-name
     // "eqeqeq": 2,//必须使用全等
     // "no-const-assign": 2,//禁止修改const声明的变量
     // "no-alert": 2,//禁止使用alert confirm prompt
