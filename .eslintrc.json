@@ -28,6 +28,12 @@
     "react",
     "@typescript-eslint"
   ],
+  "settings": {
+    "react": {
+        "pragma": "React",
+        "version": "detect"
+    }
+  },
   "rules": {
     "react/prop-types": 0, // 去掉react/prop-types
     "react/display-name": 0 // react/display-name
