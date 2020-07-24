@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/iantd-react/static/css/main.5d30f181.chunk.css",
+    "main.js": "/iantd-react/main.16ec0f7e4ed7fde2c955.bundle.js",
+    "main.css.map": "/iantd-react/static/css/main.5d30f181.chunk.css.map",
+    "main.js.map": "/iantd-react/main.16ec0f7e4ed7fde2c955.bundle.js.map",
+    "runtime~main.js": "/iantd-react/runtime~main.16ec0f7e4ed7fde2c955.bundle.js",
+    "runtime~main.js.map": "/iantd-react/runtime~main.16ec0f7e4ed7fde2c955.bundle.js.map",
+    "vendors~main.css": "/iantd-react/static/css/vendors~main.f8f248a5.chunk.css",
+    "vendors~main.js": "/iantd-react/vendors~main.16ec0f7e4ed7fde2c955.bundle.js",
+    "vendors~main.css.map": "/iantd-react/static/css/vendors~main.f8f248a5.chunk.css.map",
+    "vendors~main.js.map": "/iantd-react/vendors~main.16ec0f7e4ed7fde2c955.bundle.js.map",
+    "iframe.html": "/iantd-react/iframe.html",
+    "precache-manifest.0fa2ada6fbf3ff524308b3093e23483e.js": "/iantd-react/precache-manifest.0fa2ada6fbf3ff524308b3093e23483e.js",
+    "service-worker.js": "/iantd-react/service-worker.js",
+    "vendors~main.16ec0f7e4ed7fde2c955.bundle.js.LICENSE.txt": "/iantd-react/vendors~main.16ec0f7e4ed7fde2c955.bundle.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "runtime~main.16ec0f7e4ed7fde2c955.bundle.js",
+    "static/css/vendors~main.f8f248a5.chunk.css",
+    "vendors~main.16ec0f7e4ed7fde2c955.bundle.js",
+    "static/css/main.5d30f181.chunk.css",
+    "main.16ec0f7e4ed7fde2c955.bundle.js"
+  ]
+}
