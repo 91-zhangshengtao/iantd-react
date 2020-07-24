@@ -25,11 +25,11 @@ module.exports = ({ config }) => {
         }
       ]
     },
-    {
-      test: /\.scss$/,
-      loaders: ["style-loader", "css-loader", "sass-loader"],
-      include: path.resolve(__dirname, "../")
-    }
+    // {
+    //   test: /\.scss$/,
+    //   loaders: ["style-loader", "css-loader", "sass-loader"],
+    //   include: path.resolve(__dirname, "../")
+    // }
   );
 
   config.resolve.extensions.push(".ts", ".tsx");

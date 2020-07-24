@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/91-zhangshengtao/iantd-react/static/css/main.cdb42cd6.chunk.css",
+    "main.js": "/91-zhangshengtao/iantd-react/main.dfe7dc95ea02ccab9d05.bundle.js",
+    "main.css.map": "/91-zhangshengtao/iantd-react/static/css/main.cdb42cd6.chunk.css.map",
+    "main.js.map": "/91-zhangshengtao/iantd-react/main.dfe7dc95ea02ccab9d05.bundle.js.map",
+    "runtime~main.js": "/91-zhangshengtao/iantd-react/runtime~main.dfe7dc95ea02ccab9d05.bundle.js",
+    "runtime~main.js.map": "/91-zhangshengtao/iantd-react/runtime~main.dfe7dc95ea02ccab9d05.bundle.js.map",
+    "vendors~main.css": "/91-zhangshengtao/iantd-react/static/css/vendors~main.f8f248a5.chunk.css",
+    "vendors~main.js": "/91-zhangshengtao/iantd-react/vendors~main.dfe7dc95ea02ccab9d05.bundle.js",
+    "vendors~main.css.map": "/91-zhangshengtao/iantd-react/static/css/vendors~main.f8f248a5.chunk.css.map",
+    "vendors~main.js.map": "/91-zhangshengtao/iantd-react/vendors~main.dfe7dc95ea02ccab9d05.bundle.js.map",
+    "iframe.html": "/91-zhangshengtao/iantd-react/iframe.html",
+    "precache-manifest.f1e5991d40b6cde7bf2e40849701333e.js": "/91-zhangshengtao/iantd-react/precache-manifest.f1e5991d40b6cde7bf2e40849701333e.js",
+    "service-worker.js": "/91-zhangshengtao/iantd-react/service-worker.js",
+    "vendors~main.dfe7dc95ea02ccab9d05.bundle.js.LICENSE.txt": "/91-zhangshengtao/iantd-react/vendors~main.dfe7dc95ea02ccab9d05.bundle.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "runtime~main.dfe7dc95ea02ccab9d05.bundle.js",
+    "static/css/vendors~main.f8f248a5.chunk.css",
+    "vendors~main.dfe7dc95ea02ccab9d05.bundle.js",
+    "static/css/main.cdb42cd6.chunk.css",
+    "main.dfe7dc95ea02ccab9d05.bundle.js"
+  ]
+}

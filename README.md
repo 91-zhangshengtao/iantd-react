@@ -17,14 +17,33 @@ import { Button, Upload, AutoComplete} from 'iantd-react-my'
 ~~~
 
 ~~~jsx
+/* Button*/
 <Button btnType="danger" size="lg">按钮</Button>
 <Button disabled size="sm">按钮</Button>
-AutoComplete:
+
+/* AutoComplete: */
 <AutoComplete 
   style={{width:"300px"}}
   fetchSuggestions={handleFetch}
   onSelect={e => alert(`${e.value}  selected`)}
 />
+const handleFetch = (query: string) => {
+  let MockData =  [
+      {value: 'bradley', number: 11},
+      {value: 'pope', number: 1},
+      {value: 'caruso', number: 4},
+      {value: 'cook', number: 2},
+      {value: 'cousins', number: 15},
+      {value: 'james', number: 23},
+      {value: 'AD', number: 3},
+      {value: 'green', number: 14},
+      {value: 'howard', number: 39},
+      {value: 'kuzma', number: 0},
+    ]
+    return MockData.slice(0, 10).filter((item: any) => item.value.indexOf(query) > -1)
+}
+
+/* UpLoad */
 <Upload
   // headers={{'Content-Type': 'multipart/form-data'}}
   action="https://www.mocky.io/v2/5cc8019d300000980a055e76"

@@ -5,11 +5,11 @@ storiesOf('Welcome page', module)
   .add('welcome', () => {
     return (
       <>
-        <h1>欢迎来到 vikingship 组件库</h1>
-        <p>vikingship 是为慕课网课程打造的一套教学组件库，从零到一让大家去学习</p>
+        <h1>欢迎来到 iantd-react-my 组件库</h1>
+        <p>iantd-react-my only for test</p>
         <h3>安装试试</h3>
         <code>
-          npm install vikingship --save
+          npm install iantd-react-my --save
         </code>
       </>
     )

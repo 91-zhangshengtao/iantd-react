@@ -1,5 +1,5 @@
 import React, { FC, useState, createContext, CSSProperties } from 'react'
-import * as PropTypes from 'prop-types';
+// import * as PropTypes from 'prop-types';
 import classNames from 'classnames'
 import { MenuItemProps } from './menuItem'
 // 类型别名 --字面量定义 
