@@ -28,6 +28,9 @@
     "react",
     "@typescript-eslint"
   ],
+  /*
+    Warning: React version not specified in eslint-plugin-react settings.
+  */
   "settings": {
     "react": {
         "pragma": "React",

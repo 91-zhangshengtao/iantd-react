@@ -4,11 +4,11 @@ import axios from 'axios'
 import { render, RenderResult, fireEvent, wait, createEvent } from '@testing-library/react'
 
 import { Upload, UploadProps } from './upload'
-import { UploadFile } from './upload'
+
 // 模拟<Icon icon="spinner" spin theme="primary" />
 jest.mock('../Icon/icon', () => {
   return ({icon, onClick}) => {
-    return <span onClick={()=>{onClick}}>{icon}</span>
+    return <span onClick={onClick}>{icon}</span>
   }
 })
 // 异步测试
@@ -30,8 +30,8 @@ const testFile = new File(['xyz'], 'test.png', {type: 'image/png'})
 describe('test upload component', () => {
   beforeEach(() => {
     wrapper = render(<Upload {...testProps}>Click to upload</Upload>)
-    fileInput = wrapper.container.querySelector('.viking-file-input') as HTMLInputElement  // type="file"的input框
-    uploadArea = wrapper.queryByText('Click to upload') as HTMLElement
+    fileInput = wrapper.container.querySelector('.viking-file-input') as any // type="file"的input框
+    uploadArea = wrapper.queryByText('Click to upload') as any
   })
   it('upload process should works fine', async () => {
     const { queryByText } = wrapper
@@ -43,26 +43,30 @@ describe('test upload component', () => {
     mockedAxios.post.mockResolvedValue({'data': 'cool'}) // mockedAxios 为axios断言 的 JestMock对象
     expect(uploadArea).toBeInTheDocument()
     expect(fileInput).not.toBeVisible()
-    fireEvent.change(fileInput, { target: { files: [testFile ]}}) // 触发用户事件
+    fireEvent.change(fileInput, { target: { files: [testFile ]}})  // 触发用户事件
     expect(queryByText('spinner')).toBeInTheDocument()
     await wait(() => {
       expect(queryByText('test.png')).toBeInTheDocument()
     })
     expect(queryByText('check-circle')).toBeInTheDocument()
     expect(testProps.onSuccess).toHaveBeenCalledWith('cool', testFile)
-    expect(testProps.onChange).toHaveBeenCalledWith(testFile) // 事件是否被调用
+    expect(testProps.onChange).toHaveBeenCalledWith(testFile)  // 事件是否被调用
 
     //remove the uploaded file
     expect(queryByText('times')).toBeInTheDocument()
     fireEvent.click(queryByText('times') as any)
-    
-    // expect(queryByText('test.png')).not.toBeInTheDocument()
+    /* remove事件会调用
+       setFileList((prevList) => {
+          return prevList.filter(item => item.uid !== file.uid)
+       }) 
+    */
+    expect(queryByText('test.png')).not.toBeInTheDocument()
     // -----objectContaining --包含对象是否包含xx属性-----
-    // expect(testProps.onRemove).toHaveBeenCalledWith(expect.objectContaining({
-    //   raw: testFile,
-    //   status: 'success',
-    //   name: 'test.png'
-    // }))
+    expect(testProps.onRemove).toHaveBeenCalledWith(expect.objectContaining({
+      raw: testFile,
+      status: 'success',
+      name: 'test.png'
+    }))
   })
   it('drag and drop files should works fine', async () => {
     fireEvent.dragOver(uploadArea)

@@ -112,7 +112,11 @@ export const Upload: FC<UploadProps> = (props) => {
   }
   // file-remove 事件
   const handleRemove = (file: UploadFile) => {
+    console.log('file:',file)
+    
     setFileList((prevList) => {
+      console.log(prevList)
+      
       return prevList.filter(item => item.uid !== file.uid)
     })
     // 再调用 用户定义的remove事件
