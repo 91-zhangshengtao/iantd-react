@@ -61,7 +61,9 @@ export var Upload = function (props) {
     };
     // file-remove 事件
     var handleRemove = function (file) {
+        console.log('file:', file);
         setFileList(function (prevList) {
+            console.log(prevList);
             return prevList.filter(function (item) { return item.uid !== file.uid; });
         });
         // 再调用 用户定义的remove事件

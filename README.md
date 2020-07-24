@@ -1,5 +1,7 @@
 ## Iantd-react-my component library
 
+[文档地址](https://91-zhangshengtao.github.io/iantd-react/) 
+
 ### 安装依赖
 
 ~~~javascript

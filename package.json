@@ -1,6 +1,6 @@
 {
   "name": "iantd-react-my",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "description": "React components library",
   "author": "91-zhangshengtao",
@@ -12,7 +12,7 @@
     "iantd-react-my",
     "iantd-react-test"
   ],
-  "homepage": "https://github.com/91-zhangshengtao/iantd-react",
+  "homepage": "https://91-zhangshengtao.github.io/iantd-react/",
   "repository": {
     "type": "git",
     "url": "https://github.com/91-zhangshengtao/iantd-react"
