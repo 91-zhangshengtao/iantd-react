@@ -23,7 +23,7 @@ export const MenuContext = createContext<IMenuContext>({index: '0'}) //初始值
 /**
  * 为网站提供导航功能的菜单。支持横向纵向两种模式，支持下拉菜单。
  * ~~~js
- * import { Menu } from 'vikingship'
+ * import { Menu } from 'iantd-react-my'
  * ~~~
  */
 export const Menu: FC<MenuProps> = (props) => {

@@ -25,6 +25,12 @@ export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
   renderOption?: (item: DataSourceType) => ReactElement;
 }
 
+/**
+ * AutoComplete组件
+ * ~~~js
+ * import { AutoComplete } from 'iantd-react-my'
+ * ~~~
+ */
 export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const {
     fetchSuggestions,
